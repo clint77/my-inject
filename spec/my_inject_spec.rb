@@ -31,12 +31,14 @@ describe Array do
   context 'with an argument and a block' do
     it 'can add with a starting point' do
       expect([1, 2, 3, 4].inject(10){|memo, item| memo + item}).to eq 20
+      expect([1, 2, 3, 4].my_inject(10){|memo, item| memo + item}).to eq 20
     end
   end
 
   context 'with arguments' do
     it 'can add with a starting point and a symbol' do
       expect([1, 2, 3, 4].inject(10, :+)).to eq 20
+      # expect([1, 2, 3, 4].my_inject(10, :+)).to eq 20
     end
 
   end
