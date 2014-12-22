@@ -1,34 +1,40 @@
+
+
 class Array
 
-  # def my_inject &block
-  def my_inject(*arg)
+  def my_inject(start = 0, arg = 0)
     copy = self.dup 
-    if block_given? 
-      one = arg #this is an array of arguments pass
-      
-      memo = copy.shift #array
-      start_num = one.shift #should be a fixnum
-      copy.unshift(start_num) if start_num != nil
+    if block_given?
+      one = start
+      memo = copy.shift
+      start_num = one
+      copy.unshift(start_num) if start_num != 0
       
       copy.each do |item|
         memo = yield memo, item
-        puts "memo = #{memo} inside copy.each" 
+        # puts "memo = #{memo} inside copy.each" 
       end
+
       return memo
+
     end  
       
 
-    
-
     if !block_given?
+      sym = arg
+      memo = 0 
+      memo = start if start != 0
+      if arg == 0
+        sym = start
+        memo = copy.shift
+      end  
       
-      intial = 0
       copy.each do |item|
-        memo = memo.send(:*, item)
-        puts "memo = #{memo} inside copy.each" 
+        memo = memo.send(sym, item)
       end
+
       return memo
-      # copy.__send__(:+, memo, item)
+      
     end  
   end
 end
