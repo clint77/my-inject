@@ -11,16 +11,15 @@ class Array
       copy.unshift(start_num) if start_num != 0
       
       copy.each do |item|
-        memo = yield memo, item
-        # puts "memo = #{memo} inside copy.each" 
+        memo = yield memo, item 
       end
 
       return memo
 
-    end  
+     
       
-
-    if !block_given?
+    else
+    # if !block_given?
       sym = arg
       memo = 0 
       memo = start if start != 0
