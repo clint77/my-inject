@@ -14,10 +14,16 @@ describe Array do
       expect([1, 2, 3, 4].my_inject{ |memo, item| memo - item} ).to eq -8
     end
 
-    it 'can sum numbers' do
+    it 'can multiply numbers' do
       expect([1, 2, 3, 4].inject{ |memo, item| memo * item }).to eq 24
       expect([1, 2, 3, 4].my_inject{ |memo, item| memo * item }).to eq 24
     end
+
+    it 'can multiply numbers with starting point zero' do
+      expect([1, 2, 3, 4].inject(0){ |memo, item| memo * item }).to eq 0
+      expect([1, 2, 3, 4].my_inject(0){ |memo, item| memo * item }).to eq 0
+    end
+
 
   end
 

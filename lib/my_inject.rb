@@ -2,13 +2,12 @@
 
 class Array
 
-  def my_inject(start = 0, arg = 0)
+  def my_inject(start = nil, arg = 0)
+    start_num = 0 if start == nil
     copy = self.dup 
     if block_given?
-      one = start
       memo = copy.shift
-      start_num = one
-      copy.unshift(start_num) if start_num != 0
+      copy.unshift(start) if start != nil
       
       copy.each do |item|
         memo = yield memo, item 
@@ -16,8 +15,6 @@ class Array
 
       return memo
 
-     
-      
     else
     # if !block_given?
       sym = arg
